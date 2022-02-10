@@ -6,7 +6,19 @@
 
 <body>
 
+    <label for="difficult-select">Selecione a dificuldade:</label>
+    <select name="difficult" id="difficult-select">
+        <option value="">-Selecione uma opção--</option>
+        <option value="very-easy">Café com leite</option>
+        <option value="easy">Fácil</option>
+        <option value="medium">Médio</option>
+        <option value="hard">Difícil</option>
+        <option value="impossible">Impossível</option>
+    </select>
+    <button onclick="functionDifficult()">OK!</button>
     <div id="score">0</div>
+    <p id="user-difficult"></p>
+
     <canvas id="gameCanvas" width="400" height="400"></canvas>
 
     <style>
@@ -17,16 +29,59 @@
             transform: translate(-50%, -50%);
         }
 
-        #score{
-            position: absolute;
-            font-size: 140px;
+        #difficult-select,
+        label,
+        button,
+        p {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 15px;
         }
 
+        #score {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            position: absolute;
+            font-size: 120px;
+        }
     </style>
 
 </body>
 <script>
+    function functionDifficult() {
+        difficult = document.getElementById("difficult-select").value
+        switch (difficult) {
+            case 'very-easy':
+                speed = 200
+                text = "Muito fácil"
+                break
+            case 'easy':
+                speed = 150
+                text = "Fácil"
+                break;
+            case 'medium':
+                speed = 100
+                text = "Médio"
+                break
+            case 'hard':
+                speed = 50
+                text = "Difícil"
+                break;
+            case 'impossible':
 
+                speed = 00
+                text = "Impossível. Eu falei sério."
+                break;
+            case "":
+                break
+        }
+        if (difficult === "") {
+            alert("Selecione uma dificuldade válida!")
+        } else {
+            document.getElementById("user-difficult").innerHTML = text;
+            main()
+        }
+    }
+
+    let difficult, speed = 0, text
     const board_border = 'black';
     const board_background = 'white';
     const snake_col = 'lightblue';
@@ -40,7 +95,7 @@
         { x: 160, y: 200 }
     ]
 
-    // verdadeiro caso mude de direção
+
     let score = 0
     let changingDirection = false;
     let food_x
@@ -55,25 +110,26 @@
     //retorna um contexto de duas dimensões
     const snakeBoard_ctx = gameCanvas.getContext("2d");
 
-    //incia o jogo
-    main();
-
-    gen_food()
+    genFood()
 
     document.addEventListener("keydown", changeDirection)
 
     //a funçao main é chamada repetidamente para manter o jogo rodando
     function main() {
-        if (hasGameEnded()) return;
 
+        if (hasGameEnded()) {
+            alert("Você perdeu! Clique em OK para reiniciar o jogo.")
+            return document.location.reload();
+        }
         changingDirection = false
         setTimeout(function onTick() {
             clearCanvas();
             drawFood();
             moveSnake();
             drawSnake();
+            //repete
             main()
-        }, 100)
+        }, speed)
     }
 
     //desenha a borda ao redor do canvas
@@ -94,7 +150,7 @@
         snake.forEach(drawSnakePart);
     }
 
-        function drawFood() {
+    function drawFood() {
         snakeBoard_ctx.fillStyle = 'lightgreen'
         snakeBoard_ctx.strokestyle = 'darkgreen'
         snakeBoard_ctx.fillRect(food_x, food_y, 10, 10)
@@ -116,6 +172,7 @@
     function hasGameEnded() {
         for (let i = 4; i < snake.length; i++) {
             if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
+
         }
         const hitLeftWall = snake[0].x < 0
         const hitRightWall = snake[0].x > snakeBoard.width - 10
@@ -123,22 +180,24 @@
         const hitBottomWall = snake[0].y > snakeBoard.height - 10
 
         return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall
+
     }
 
-    function random_food(min, max) {
+    function randomFood(min, max) {
         return Math.round((Math.random() * (max - min) + min) / 10) * 10
     }
 
-    function gen_food() {
-        food_x = random_food(0, snakeBoard.width - 10)
-        food_y = random_food(0, snakeBoard.height - 10)
-        snake.forEach(function has_snake_eaten_food(part) {
-            const has_eaten = part.x == food_x && part.y == food_y
-            if (has_eaten) gen_food()
+    function genFood() {
+        //gera um numero aleatorio para as coordenadas x e y da comida
+        food_x = randomFood(0, snakeBoard.width - 10)
+        food_y = randomFood(0, snakeBoard.height - 10)
+        //se o numero aleatorio gera uma coordenada que ja é ocupada pela cobra,
+        // gera uma nova localização para a comida
+        snake.forEach(function hasSnakeEatenFood(part) {
+            const hasEaten = part.x == food_x && part.y == food_y
+            if (hasEaten) genFood()
         })
     }
-
-
 
     function changeDirection(event) {
         const LEFT_KEY = 37;
@@ -185,33 +244,40 @@
         }
         // adiciona a nova cabeça para o inicio do corpo da cobra
         snake.unshift(head)
-        const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y
-        if (has_eaten_food) {
+        const hasEatenFood = snake[0].x === food_x && snake[0].y === food_y
+        if (hasEatenFood) {
             //aumenta a pontuação
-            score +=10
+            score += scoreDifficult()
             //mostra pontuação na tela
-            document.getElementById('score').innerHTML= score;
+            document.getElementById('score').innerHTML = score;
             //gera nova localização para comida
-            gen_food()
+            genFood()
         } else {
             //remove a ultima parte do corpo da cobra
             snake.pop()
         }
 
-
-
-        //dx é a velocidade horizontal da cobra 
-
     }
+    function scoreDifficult() {
+        switch (difficult) {
+            case 'very-easy':
+                return 2
+                break;
+            case 'easy':
+                return 5
+                break;
+            case 'medium':
+                return 10
+                break;
+            case 'hard':
+                return 50
+                break;
+            case 'impossible':
 
-
-    // passo 4
-
-
-
-
-
-
+                return 1000
+                break;
+        }
+    }
 
 </script>
 
