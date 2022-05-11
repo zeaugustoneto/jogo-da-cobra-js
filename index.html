@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Cobra</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    
+    <label for="difficult-select">Selecione a dificuldade:</label>
+    <select name="difficult" id="difficult-select">
+        <option value="">-Selecione uma opção--</option>
+        <option value="coffee-milk">Café com leite</option>
+        <option value="very-easy">Muito fácil</option>
+        <option value="easy">Fácil</option>
+        <option value="medium">Médio</option>
+        <option value="hard">Difícil</option>
+        <option value="impossible">Impossível</option>
+    </select>
+    <button onclick="functionDifficult()">OK!</button>
+    <div id="score">0</div>
+    <p id="user-difficult"></p>
+
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+
+<script  src="js/script.js"></script>
+</body>
+
+
+</html>
