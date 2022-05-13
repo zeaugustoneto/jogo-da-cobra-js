@@ -39,56 +39,59 @@ function functionDifficult() {
 
 
     if (speed == 0) {
-    speed == 0
-    difficult = document.getElementById("difficult-select").value
-    switch (difficult) {
-        case 'coffee-milk':
-            speed = 400
-            text =  'Mamão no açucar'
-            break
-        case 'very-easy':
-            speed = 200
-            text = "Muito fácil"
-            break
-        case 'easy':
-            speed = 150
-            text = "Fácil"
-            break;
-        case 'medium':
-            speed = 100
-            text = "Médio"
-            break
-        case 'hard':
-            speed = 50
-            text = "Difícil"
-            break;
-        case 'impossible':
-            speed = 00
-            text = "É impossível. Nem tenta."
-            break;
-        case "":
-            break
-    }
+        speed == 0
+        difficult = document.getElementById("difficult-select").value
+        switch (difficult) {
+            case 'coffee-milk':
+                speed = 400
+                text = 'Mamão no açucar'
+                break
+            case 'very-easy':
+                speed = 200
+                text = "Muito fácil"
+                break
+            case 'easy':
+                speed = 150
+                text = "Fácil"
+                break;
+            case 'medium':
+                speed = 100
+                text = "Médio"
+                break
+            case 'hard':
+                speed = 50
+                text = "Difícil"
+                break;
+            case 'impossible':
+                speed = 00
+                text = "É impossível. Nem tenta."
+                break;
+            case "":
+                break
+        }
 
-    if (difficult === "") {
-        alert("Você não escolheu nenhuma dificuldade 🤔")
+        if (difficult === "") {
+            alert("Você não escolheu nenhuma dificuldade 🤔")
+        } else {
+            document.getElementById("user-difficult").innerHTML = text;
+            main()
+        }
+
+
     } else {
-        document.getElementById("user-difficult").innerHTML = text;
-        main()
+        console.log("Speed: " + speed)
+        alert("Dificuldade modificada durante o jogo, e isso não pode 😒")
+        document.location.reload();
     }
-
-
-     } else {
-         console.log("Speed: " + speed)
-         alert("Dificuldade modificada durante o jogo, e isso não pode 😒")
-         document.location.reload();
-     }
 
 
 }
 genFood()
 
 document.addEventListener("keydown", changeDirection)
+//document.addEventListener("onclick", changeDirection)
+
+
 
 //a funçao main é chamada repetidamente para manter o jogo rodando
 function main() {
@@ -197,7 +200,7 @@ function changeDirection(event) {
         dy = 0;
     }
 
-    if (keyPressed === UP_KEY && !goingDown) {
+    if ((keyPressed === UP_KEY && !goingDown)) {
         dx = 0;
         dy = -10;
     }
@@ -207,10 +210,52 @@ function changeDirection(event) {
         dy = 0;
     }
 
-    if (keyPressed === DOWN_KEY && !goingUp) {
+    if ((keyPressed === DOWN_KEY && !goingUp)) {
         dx = 0;
         dy = 10;
+
+
     }
+
+
+
+
+}
+
+
+function changeDirectionMobile(value) {
+
+    if (changingDirection) return;
+    changingDirection = true
+    const goingUp = dy === -10;
+    const goingDown = dy === 10;
+    const goingRight = dx === 10;
+    const goingLeft = dx === -10;
+
+   if (value=== left && !goingRight) {
+        dx = -10;
+        dy = 0;
+    }
+
+    if ((value=== top && !goingDown)) {
+        dx = 0;
+        dy = -10;
+    }
+
+    if (value === right && !goingLeft) {
+        dx = 10;
+        dy = 0;
+    }
+
+    if ((value === bottom && !goingUp)) {
+        dx = 0;
+        dy = 10;
+
+
+    }
+    
+
+
 }
 
 
@@ -259,4 +304,9 @@ function scoreDifficult() {
             break;
     }
 }
+
+
+/*
+
+  }*/
 

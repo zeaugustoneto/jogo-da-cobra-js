@@ -11,25 +11,41 @@
 </head>
 
 <body>
-    
-    <label for="difficult-select">Selecione a dificuldade:</label>
-    <select name="difficult" id="difficult-select">
-        <option value="">-Selecione uma opção--</option>
-        <option value="coffee-milk">Café com leite</option>
-        <option value="very-easy">Muito fácil</option>
-        <option value="easy">Fácil</option>
-        <option value="medium">Médio</option>
-        <option value="hard">Difícil</option>
-        <option value="impossible">Impossível</option>
-    </select>
-    <button onclick="functionDifficult()">OK!</button>
-    <div id="score">0</div>
-    <p id="user-difficult"></p>
+    <container>
 
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <label for="difficult-select">Selecione a dificuldade:</label>
+        <select name="difficult" id="difficult-select">
+            <option value="">-Selecione uma opção--</option>
+            <option value="coffee-milk">Café com leite</option>
+            <option value="very-easy">Muito fácil</option>
+            <option value="easy">Fácil</option>
+            <option value="medium">Médio</option>
+            <option value="hard">Difícil</option>
+            <option value="impossible">Impossível</option>
+        </select>
+        <button onclick="functionDifficult()">OK!</button>
+        <p id="user-difficult"></p>
 
 
-<script  src="js/script.js"></script>
+
+
+        <div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        
+        </div>
+        
+        <div class="button">
+            <button id="top" value="top" onclick="changeDirectionMobile(top)">top</button>
+            <button id="bottom" value="bottom" onclick="changeDirectionMobile(bottom)">bottom</button>
+            <button id="left" value="left" onclick="changeDirectionMobile(left)">left</button>
+            <button id="right" value="right" onclick="changeDirectionMobile(right)">right</button>
+        </div>
+        <div id="score">
+            <p>0</p>
+        </div>
+    </container>
+
+    <script src="js/script.js"></script>
 </body>
 
 

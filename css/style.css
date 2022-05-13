@@ -1,9 +1,11 @@
-#gameCanvas {
+/*#gameCanvas {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+}*/
+
+
 
 #difficult-select,
 label,
@@ -13,8 +15,11 @@ p {
     font-size: 15px;
 }
 
-#score {
+
+
+/*
+#score p {
+    float: right;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    position: absolute;
     font-size: 120px;
-}
+}*/
