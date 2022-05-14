@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Cobra</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -13,17 +19,21 @@
 <body>
     <container>
 
-        
-        <audio id="audioPlayer" preload="auto" controls="controls">
+
+        <audio id="audioPlayer" preload="auto">
             <source src="assets/Eric Prydz - Opus (OUT NOW).mp4" type="audio/mp3" volu />
             seu navegador não suporta HTML5
-          </audio>
-
-
+        </audio>
 
         <div>
-        <canvas id="gameCanvas" width="400" height="300"></canvas>
-        
+            <canvas id="gameCanvas" width="400" height="300"></canvas>
+
+        </div>
+        <div>
+            <span class="material-symbols-outlined" style="cursor: pointer;"
+                onclick="document.getElementById('audioPlayer').muted = !document.getElementById('audioPlayer').muted">
+                volume_off
+            </span>
         </div>
 
         <button onclick="main()">- - - JOGAR - - -</button>
@@ -33,7 +43,7 @@
             <button id="left" value="left" onclick="changeDirectionMobile(left)">Esquerda</button>
             <button id="right" value="right" onclick="changeDirectionMobile(right)">Direita</button>
         </div>
-        <div >
+        <div>
             <p id="score">0</p>
         </div>
     </container>
