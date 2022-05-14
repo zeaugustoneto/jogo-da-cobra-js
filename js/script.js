@@ -1,14 +1,14 @@
 let perdeuFrases = [
-    'Perdeu... você sabe jogar? É só usar as setas...', 'Você perdeu. Pegue seu banquinho e saia de mansinho.', 'Eu pensei que você não sabia jogar... e você me provou certo', 'Talvez você não saiba onde estão as teclas no seu teclado...', 'Você está jogando com volante? Pois parece...', 'Cima, baixo, esquerda, direita... apenas 4 direções e mesmo assim você perdeu', 'Talvez seria melhor você botar na "Café com leite"', 'Vamo lá campeão, mais 50 tentativas e você tá pronto pro nível Médio, focooo', 'Não desista! Treino sempre será melhor que talento.', '"Jogo no easy e perco" - Você'
+    'Perdeu... você sabe jogar? É só usar as setas...', 'Você perdeu. Pegue seu banquinho e saia de mansinho.', 'Eu pensei que você não sabia jogar, mas isso aí é sacanagem', 'Talvez você não saiba onde estão as teclas no seu teclado...', 'Você está jogando com volante?', 'Cima, baixo, esquerda, direita... apenas 4 direções e mesmo assim você perdeu', 'Vamo lá campeão, mais 50 tentativas e você consegue fazer 100 pontos', 'Não desista! Treino sempre será melhor que talento.', '"Jogo no easy e perco" - Você'
 
 ]
 
-let speed = 0
+let speed = 280
 let difficult, text
 const board_border = 'black';
-const board_background = 'white';
-const snake_col = 'lightblue';
-const snake_border = 'darkblue';
+const board_background = 'lightgrey';
+const snake_col = 'lightgreen';
+const snake_border = 'darkgreen';
 
 let snake = [
     { x: 200, y: 200 },
@@ -19,7 +19,7 @@ let snake = [
 ]
 
 
-let score = 0
+let score = 0, tamanho = 5
 let changingDirection = false;
 let food_x
 let food_y
@@ -27,6 +27,22 @@ let food_y
 let dx = 10;
 //velocidade vertical y 
 let dy = 0;
+
+
+/* visão luis felipe
+function setSpeedAndText(speedParam = 300, textParam = '') {
+    speed = speedParam
+    text = textParam
+}
+const difficults = {
+    'coffee-milk': setSpeedAndText(400, 'Mamão com açucar'),
+
+}
+
+difficults[difficult] || setSpeedAndText()
+
+*/
+
 
 //pegar elemento do canvas
 const snakeBoard = document.getElementById("gameCanvas");
@@ -36,11 +52,10 @@ function functionDifficult() {
 
     console.log("Speed: " + speed)
 
-
-
-    if (speed == 0) {
-        speed == 0
+    if (!speed) {
         difficult = document.getElementById("difficult-select").value
+
+
         switch (difficult) {
             case 'coffee-milk':
                 speed = 400
@@ -63,19 +78,18 @@ function functionDifficult() {
                 text = "Difícil"
                 break;
             case 'impossible':
-                speed = 00
+                speed = 1
                 text = "É impossível. Nem tenta."
                 break;
             case "":
+                alert("Você não escolheu nenhuma dificuldade 🤔")
                 break
         }
 
-        if (difficult === "") {
-            alert("Você não escolheu nenhuma dificuldade 🤔")
-        } else {
-            document.getElementById("user-difficult").innerHTML = text;
-            main()
-        }
+
+        document.getElementById("user-difficult").innerHTML = text;
+        main()
+
 
 
     } else {
@@ -90,14 +104,16 @@ genFood()
 
 document.addEventListener("keydown", changeDirection)
 //document.addEventListener("onclick", changeDirection)
-
-
+var audio = document.getElementById("audioPlayer");
+    audio.volume = 0.25;
+clearCanvas()
+drawSnake()
 
 //a funçao main é chamada repetidamente para manter o jogo rodando
 function main() {
-
+    audio.play()
     if (hasGameEnded()) {
-        let perdeuAleatorio = Math.floor(Math.random() * perdeuFrases.length + 1)
+        let perdeuAleatorio = Math.floor(Math.random() * perdeuFrases.length)
         alert(perdeuFrases[perdeuAleatorio])
         document.location.reload();
     } else {
@@ -107,9 +123,22 @@ function main() {
             drawFood();
             moveSnake();
             drawSnake();
+        
+            console.log("Snake length" + snake.length)
             //repete
             main()
-        }, speed)
+        }, speedBoost())
+    }
+}
+
+function speedBoost () {
+    if(snake.length>tamanho){
+       // console.log("Velocidade length>tamanho" + speed)
+        tamanho = snake.length
+        return speed = speed - 5
+    } else{
+       // console.log("Velocidade length<tamanho" + speed)
+        return speed
     }
 }
 
@@ -129,11 +158,12 @@ function clearCanvas() {
 function drawSnake() {
     //desenha cada parte
     snake.forEach(drawSnakePart);
+    console.log(speed)
 }
 
 function drawFood() {
-    snakeBoard_ctx.fillStyle = 'lightgreen'
-    snakeBoard_ctx.strokestyle = 'darkgreen'
+    snakeBoard_ctx.fillStyle = 'darkred'
+    snakeBoard_ctx.strokeStyle = 'darkgreen'
     snakeBoard_ctx.fillRect(food_x, food_y, 10, 10)
     snakeBoard_ctx.strokeRect(food_x, food_y, 10, 10)
 }
@@ -141,9 +171,9 @@ function drawFood() {
 //desenha uma parte da cobra
 function drawSnakePart(snakePart) {
     //seleciona a cor para a parte da cobra
-    snakeBoard_ctx.fillStyle = snake_col;
+    snakeBoard_ctx.fillStyle = 'darkgreen';
     //seleciona a cor da borda da parte da cobra
-    snakeBoard_ctx.strokestyle = snake_border
+    snakeBoard_ctx.strokeStyle = 'darkgreen'
     //desenha um retangulo cheio para representar a parte da cobra na coordenada que ela se encontra
     snakeBoard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
     //desenha a borda ao redor da parte da cobra
@@ -175,8 +205,15 @@ function genFood() {
     //se o numero aleatorio gera uma coordenada que ja é ocupada pela cobra,
     // gera uma nova localização para a comida
     snake.forEach(function hasSnakeEatenFood(part) {
-        const hasEaten = part.x == food_x && part.y == food_y
-        if (hasEaten) genFood()
+        const hasEaten = part.x === food_x && part.y === food_y
+
+        if (hasEaten) {
+            
+            
+            genFood()
+            
+
+        }
     })
 }
 
@@ -232,12 +269,12 @@ function changeDirectionMobile(value) {
     const goingRight = dx === 10;
     const goingLeft = dx === -10;
 
-   if (value=== left && !goingRight) {
+    if (value === left && !goingRight) {
         dx = -10;
         dy = 0;
     }
 
-    if ((value=== top && !goingDown)) {
+    if ((value === top && !goingDown)) {
         dx = 0;
         dy = -10;
     }
@@ -253,7 +290,7 @@ function changeDirectionMobile(value) {
 
 
     }
-    
+
 
 
 }
@@ -282,27 +319,47 @@ function moveSnake() {
 
 }
 function scoreDifficult() {
-    switch (difficult) {
-        case 'coffee-milk':
-            return 0.25
-            break
-        case 'very-easy':
-            return 2
-            break;
-        case 'easy':
-            return 5
-            break;
-        case 'medium':
-            return 10
-            break;
-        case 'hard':
-            return 50
-            break;
-        case 'impossible':
 
-            return 1000
-            break;
+    if(score < 30){
+        return 5
+    } else if( score < 50){
+        return 10
     }
+     else if( score < 100){
+        return 15
+    }
+     else if( score < 200){
+        return 20
+    }
+     else if( score < 400){
+        return 30
+    }
+     else if( score < 600){
+        return 50
+    }
+     else if( score < 1000){
+        return 100
+    }
+
+    /*
+ if(speed<= 280 && speed > 250){
+   return 5
+ }
+ else if(speed<= 250 && speed > 220){
+     return 10
+ }
+ else if(speed<= 220 && speed > 180){
+     return 25
+ }
+ else if(speed<= 180 && speed > 150){
+     return 50
+ }
+ else if(speed<= 150 && speed > 110){
+     return 120
+ }
+ else{
+     return 100000
+ }*/
 }
 
 

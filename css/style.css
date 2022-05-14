@@ -15,11 +15,14 @@ p {
     font-size: 15px;
 }
 
+#gameCanvas{
+    background-color:aqua
+}
 
 
-/*
-#score p {
-    float: right;
+#score{
+    margin: 10px;
+   padding: 5px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 120px;
-}*/
+    font-size: 100px;
+}

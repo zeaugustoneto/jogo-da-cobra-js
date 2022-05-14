@@ -13,35 +13,28 @@
 <body>
     <container>
 
-        <label for="difficult-select">Selecione a dificuldade:</label>
-        <select name="difficult" id="difficult-select">
-            <option value="">-Selecione uma opção--</option>
-            <option value="coffee-milk">Café com leite</option>
-            <option value="very-easy">Muito fácil</option>
-            <option value="easy">Fácil</option>
-            <option value="medium">Médio</option>
-            <option value="hard">Difícil</option>
-            <option value="impossible">Impossível</option>
-        </select>
-        <button onclick="functionDifficult()">OK!</button>
-        <p id="user-difficult"></p>
-
+        
+        <audio id="audioPlayer" preload="auto" controls="controls">
+            <source src="assets/Eric Prydz - Opus (OUT NOW).mp4" type="audio/mp3" volu />
+            seu navegador não suporta HTML5
+          </audio>
 
 
 
         <div>
-        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <canvas id="gameCanvas" width="400" height="300"></canvas>
         
         </div>
-        
+
+        <button onclick="main()">- - - JOGAR - - -</button>
         <div class="button">
-            <button id="top" value="top" onclick="changeDirectionMobile(top)">top</button>
-            <button id="bottom" value="bottom" onclick="changeDirectionMobile(bottom)">bottom</button>
-            <button id="left" value="left" onclick="changeDirectionMobile(left)">left</button>
-            <button id="right" value="right" onclick="changeDirectionMobile(right)">right</button>
+            <button id="top" value="top" onclick="changeDirectionMobile(top)">Cima</button>
+            <button id="bottom" value="bottom" onclick="changeDirectionMobile(bottom)">Baixo</button>
+            <button id="left" value="left" onclick="changeDirectionMobile(left)">Esquerda</button>
+            <button id="right" value="right" onclick="changeDirectionMobile(right)">Direita</button>
         </div>
-        <div id="score">
-            <p>0</p>
+        <div >
+            <p id="score">0</p>
         </div>
     </container>
 
