@@ -1,6 +1,6 @@
-This favicon was generated using the following graphics from Twitter Twemoji:
+This logo was generated using the following font:
 
-- Graphics Title: 1f40d.svg
-- Graphics Author: Copyright 2020 Twitter, Inc and other contributors (https://github.com/twitter/twemoji)
-- Graphics Source: https://github.com/twitter/twemoji/blob/master/assets/svg/1f40d.svg
-- Graphics License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+- Font Title: Fenix
+- Font Author: Copyright (c) 2012, Fernando Diaz (www.ferfolio.com) with Reserved Font Name 'Fenix'
+- Font Source: http://fonts.gstatic.com/s/fenix/v20/XoHo2YL_S7-g5ostKzAFvs8o.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

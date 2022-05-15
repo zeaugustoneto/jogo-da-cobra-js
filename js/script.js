@@ -1,9 +1,4 @@
-let perdeuFrases = [
-    'Perdeu... você sabe jogar? É só usar as setas...', 'Você perdeu. Pegue seu banquinho e saia de mansinho.', 'Eu pensei que você não sabia jogar, mas isso aí é sacanagem', 'Talvez você não saiba onde estão as teclas no seu teclado...', 'Você está jogando com volante?', 'Cima, baixo, esquerda, direita... apenas 4 direções e mesmo assim você perdeu', 'Vamo lá campeão, mais 50 tentativas e você consegue fazer 100 pontos', 'Não desista! Treino sempre será melhor que talento.', '"Jogo no easy e perco" - Você'
-
-]
-
-let speed = 280
+let speed = 285
 let difficult, text
 const board_border = 'black';
 const board_background = 'lightgrey';
@@ -18,6 +13,10 @@ let snake = [
     { x: 160, y: 200 }
 ]
 
+let perdeuFrases = [
+    'Perdeu... você sabe jogar? É só usar as setas...', 'Você perdeu. Pegue seu banquinho e saia de mansinho.', 'Eu pensei que você não sabia jogar, mas isso aí é sacanagem', 'Talvez você não saiba onde estão as teclas no seu teclado...', 'Você está jogando com volante?', 'Cima, baixo, esquerda, direita... apenas 4 direções e mesmo assim você perdeu', 'Vamo lá campeão, mais 50 tentativas e você consegue fazer 100 pontos', 'Não desista! Treino sempre será melhor que talento.', '"Jogo no easy e perco" - Você'
+
+]
 
 let score = 0, tamanho = 5
 let changingDirection = false;
@@ -27,7 +26,6 @@ let food_y
 let dx = 10;
 //velocidade vertical y 
 let dy = 0;
-
 
 /* visão luis felipe
 function setSpeedAndText(speedParam = 300, textParam = '') {
@@ -43,11 +41,18 @@ difficults[difficult] || setSpeedAndText()
 
 */
 
-
 //pegar elemento do canvas
 const snakeBoard = document.getElementById("gameCanvas");
 //retorna um contexto de duas dimensões
 const snakeBoard_ctx = gameCanvas.getContext("2d");
+document.addEventListener("keydown", changeDirection)
+var audio = document.getElementById("audioPlayer");
+audio.volume = 0.2;
+
+genFood()
+clearCanvas()
+drawSnake()
+
 function functionDifficult() {
 
     console.log("Speed: " + speed)
@@ -100,14 +105,8 @@ function functionDifficult() {
 
 
 }
-genFood()
 
-document.addEventListener("keydown", changeDirection)
 //document.addEventListener("onclick", changeDirection)
-var audio = document.getElementById("audioPlayer");
-    audio.volume = 0.25;
-clearCanvas()
-drawSnake()
 
 //a funçao main é chamada repetidamente para manter o jogo rodando
 function main() {
@@ -123,7 +122,7 @@ function main() {
             drawFood();
             moveSnake();
             drawSnake();
-        
+
             console.log("Snake length" + snake.length)
             //repete
             main()
@@ -131,13 +130,11 @@ function main() {
     }
 }
 
-function speedBoost () {
-    if(snake.length>tamanho){
-       // console.log("Velocidade length>tamanho" + speed)
+function speedBoost() {
+    if (snake.length > tamanho) {
         tamanho = snake.length
         return speed = speed - 5
-    } else{
-       // console.log("Velocidade length<tamanho" + speed)
+    } else {
         return speed
     }
 }
@@ -152,7 +149,6 @@ function clearCanvas() {
     snakeBoard_ctx.fillRect(0, 0, snakeBoard.width, snakeBoard.height)
     //desenha a borda ao redor do canvas inteiro
     snakeBoard_ctx.strokeRect(0, 0, snakeBoard.width, snakeBoard.height)
-
 }
 //função que desenha a cobra no canvas
 function drawSnake() {
@@ -173,7 +169,7 @@ function drawSnakePart(snakePart) {
     //seleciona a cor para a parte da cobra
     snakeBoard_ctx.fillStyle = 'darkgreen';
     //seleciona a cor da borda da parte da cobra
-    snakeBoard_ctx.strokeStyle = 'darkgreen'
+    snakeBoard_ctx.strokeStyle = 'black'
     //desenha um retangulo cheio para representar a parte da cobra na coordenada que ela se encontra
     snakeBoard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
     //desenha a borda ao redor da parte da cobra
@@ -183,7 +179,6 @@ function drawSnakePart(snakePart) {
 function hasGameEnded() {
     for (let i = 4; i < snake.length; i++) {
         if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
-
     }
     const hitLeftWall = snake[0].x < 0
     const hitRightWall = snake[0].x > snakeBoard.width - 10
@@ -191,7 +186,6 @@ function hasGameEnded() {
     const hitBottomWall = snake[0].y > snakeBoard.height - 10
 
     return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall
-
 }
 
 function randomFood(min, max) {
@@ -208,14 +202,11 @@ function genFood() {
         const hasEaten = part.x === food_x && part.y === food_y
 
         if (hasEaten) {
-            
-            
             genFood()
-            
-
         }
     })
 }
+
 
 function changeDirection(event) {
     const LEFT_KEY = 37;
@@ -232,6 +223,11 @@ function changeDirection(event) {
     const goingRight = dx === 10;
     const goingLeft = dx === -10;
 
+
+
+    
+
+    
     if (keyPressed === LEFT_KEY && !goingRight) {
         dx = -10;
         dy = 0;
@@ -250,13 +246,8 @@ function changeDirection(event) {
     if ((keyPressed === DOWN_KEY && !goingUp)) {
         dx = 0;
         dy = 10;
-
-
     }
-
-
-
-
+    
 }
 
 
@@ -287,15 +278,8 @@ function changeDirectionMobile(value) {
     if ((value === bottom && !goingUp)) {
         dx = 0;
         dy = 10;
-
-
     }
-
-
-
 }
-
-
 //funçao de movimento da cobra
 function moveSnake() {
     //cria a nova cabeça da cobra
@@ -316,54 +300,47 @@ function moveSnake() {
         //remove a ultima parte do corpo da cobra
         snake.pop()
     }
-
 }
+function scoreConst(ponto, aumento) {
+    return [
+        { ponto: 50, aumento: 5 },
+    ]
+}
+
 function scoreDifficult() {
-
-    if(score < 30){
-        return 5
-    } else if( score < 50){
-        return 10
-    }
-     else if( score < 100){
-        return 15
-    }
-     else if( score < 200){
-        return 20
-    }
-     else if( score < 400){
-        return 30
-    }
-     else if( score < 600){
-        return 50
-    }
-     else if( score < 1000){
-        return 100
-    }
-
-    /*
- if(speed<= 280 && speed > 250){
-   return 5
- }
- else if(speed<= 250 && speed > 220){
-     return 10
- }
- else if(speed<= 220 && speed > 180){
-     return 25
- }
- else if(speed<= 180 && speed > 150){
-     return 50
- }
- else if(speed<= 150 && speed > 110){
-     return 120
- }
- else{
-     return 100000
- }*/
+    if (score < 50) return 5
+    else if (score < 70)  return 7
+    else if (score < 120) return 10
+    else if (score < 200) return 15
+    else if (score < 400) return 18
+    else if (score < 1000)  return 22
+    else if (score >= 1000) return 25
 }
+/*
+if(speed<= 280 && speed > 250){
+return 5
+}
+else if(speed<= 250 && speed > 220){
+return 10
+}
+else if(speed<= 220 && speed > 180){
+return 25
+}
+else if(speed<= 180 && speed > 150){
+return 50
+}
+else if(speed<= 150 && speed > 110){
+return 120
+}
+else{
+return 100000
+}*/
+
 
 
 /*
 
   }*/
+
+
 

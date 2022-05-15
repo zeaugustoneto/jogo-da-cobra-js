@@ -29,22 +29,42 @@
             <canvas id="gameCanvas" width="400" height="300"></canvas>
 
         </div>
-        <div>
-            <span class="material-symbols-outlined" style="cursor: pointer;"
-                onclick="document.getElementById('audioPlayer').muted = !document.getElementById('audioPlayer').muted">
-                volume_off
-            </span>
-        </div>
+        <div id="conteudo">
+            <div id="playerAndPlay">
+                <button id="play" onclick="main()">-JOGAR-</button>
+                <span id="audioIcone" class="material-symbols-outlined" style="cursor: pointer;"
+                    onclick="document.getElementById('audioPlayer').muted = !document.getElementById('audioPlayer').muted">
+                    volume_off
+                </span>
 
-        <button onclick="main()">- - - JOGAR - - -</button>
-        <div class="button">
-            <button id="top" value="top" onclick="changeDirectionMobile(top)">Cima</button>
-            <button id="bottom" value="bottom" onclick="changeDirectionMobile(bottom)">Baixo</button>
-            <button id="left" value="left" onclick="changeDirectionMobile(left)">Esquerda</button>
-            <button id="right" value="right" onclick="changeDirectionMobile(right)">Direita</button>
-        </div>
-        <div>
-            <p id="score">0</p>
+
+                
+            </div>
+            <div id="directionContainer">
+
+                <div id='espaco'></div>
+
+                <button class="direction" id="top" value="top" onclick="changeDirectionMobile(top)">Cima</button>
+
+                <div id='espaco'>Pontuação: <p id="score">0</p></div>
+
+                <button id="left" class="direction" value="left" onclick="changeDirectionMobile(left)">Esquerda</button>
+
+                <div id='espaco'></div>
+
+                <button class="direction" id="right" value="right"
+                    onclick="changeDirectionMobile(right)">Direita</button>
+                    <div id='espaco'></div>
+
+                <button class="direction" id="bottom" value="bottom"
+                    onclick="changeDirectionMobile(bottom)">Baixo</button>
+
+                    <div id='espaco'></div>
+
+            </div>
+            <div>
+
+            </div>
         </div>
     </container>
 

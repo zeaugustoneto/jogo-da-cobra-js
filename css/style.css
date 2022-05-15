@@ -1,29 +1,71 @@
-/*#gameCanvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}*/
 
-
-
-
-#difficult-select,
-label,
-button,
-p {
+* {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
+
+
+
+container{
+    display: grid;
+    justify-content: center;
+}
+
+#conteudo{
+    display: grid;
+    justify-content: center;
+    padding: 20px 0;
+}
+#score{
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    
+    
+}
+
+#directionContainer{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 5px;
+    padding: 10px;
+}
+.direction{
+    text-align: center;
+    width: 100%;
+}
+#playerAndPlay{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+}
+
+#top,
+#bottom,#espaco
+{
+    font-size: 15px;
+    text-align: center;
+    width: 100px;
+    height: 60px;
+}
+#left,
+#right{
+    width: 120px;
+    height: 60px;
+}
+
+
+
+#play{
+    width: 100px;
+}
+
+
 
 #gameCanvas{
-    background-color:aqua
+    position: relative;
 }
 
 
-#score{
-    margin: 10px;
-   padding: 5px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 100px;
-}
