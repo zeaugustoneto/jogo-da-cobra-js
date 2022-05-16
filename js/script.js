@@ -6,11 +6,11 @@ const snake_col = 'lightgreen';
 const snake_border = 'darkgreen';
 
 let snake = [
-    { x: 200, y: 200 },
-    { x: 190, y: 200 },
-    { x: 180, y: 200 },
-    { x: 170, y: 200 },
-    { x: 160, y: 200 }
+    { x: 200, y: 100 },
+    { x: 190, y: 100 },
+    { x: 180, y: 100 },
+    { x: 170, y: 100 },
+    { x: 160, y: 100 }
 ]
 
 let perdeuFrases = [
@@ -34,74 +34,34 @@ function setSpeedAndText(speedParam = 300, textParam = '') {
 }
 const difficults = {
     'coffee-milk': setSpeedAndText(400, 'Mamão com açucar'),
-
 }
-
 difficults[difficult] || setSpeedAndText()
-
 */
 
 //pegar elemento do canvas
 const snakeBoard = document.getElementById("gameCanvas");
+const conteudoResponsive = document.getElementsByClassName(".directionContainerClass")
 //retorna um contexto de duas dimensões
 const snakeBoard_ctx = gameCanvas.getContext("2d");
 document.addEventListener("keydown", changeDirection)
 var audio = document.getElementById("audioPlayer");
 audio.volume = 0.2;
 
+resizeCanvas()
+window.addEventListener('resize', resizeCanvas,false)
 genFood()
+
 clearCanvas()
 drawSnake()
 
-function functionDifficult() {
+function resizeCanvas(){
+    if(window.innerWidth <= 550){
 
-    console.log("Speed: " + speed)
-
-    if (!speed) {
-        difficult = document.getElementById("difficult-select").value
-
-
-        switch (difficult) {
-            case 'coffee-milk':
-                speed = 400
-                text = 'Mamão no açucar'
-                break
-            case 'very-easy':
-                speed = 200
-                text = "Muito fácil"
-                break
-            case 'easy':
-                speed = 150
-                text = "Fácil"
-                break;
-            case 'medium':
-                speed = 100
-                text = "Médio"
-                break
-            case 'hard':
-                speed = 50
-                text = "Difícil"
-                break;
-            case 'impossible':
-                speed = 1
-                text = "É impossível. Nem tenta."
-                break;
-            case "":
-                alert("Você não escolheu nenhuma dificuldade 🤔")
-                break
-        }
-
-
-        document.getElementById("user-difficult").innerHTML = text;
-        main()
-
-
-
+    return snakeBoard.width = window.innerWidth, snakeBoard.height = 300 ,genFood(),clearCanvas(),drawSnake(), conteudoResponsive.width = window.innerWidth
     } else {
-        console.log("Speed: " + speed)
-        alert("Dificuldade modificada durante o jogo, e isso não pode 😒")
-        document.location.reload();
+        return snakeBoard.width = 450, snakeBoard.height = 300 ,genFood(),clearCanvas(),drawSnake() 
     }
+    
 
 
 }
@@ -301,11 +261,7 @@ function moveSnake() {
         snake.pop()
     }
 }
-function scoreConst(ponto, aumento) {
-    return [
-        { ponto: 50, aumento: 5 },
-    ]
-}
+
 
 function scoreDifficult() {
     if (score < 50) return 5
@@ -339,8 +295,4 @@ return 100000
 
 
 /*
-
   }*/
-
-
-

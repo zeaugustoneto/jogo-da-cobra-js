@@ -10,62 +10,65 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
     <link rel="manifest" href="assets/site.webmanifest">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/2a45af6712.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="background:#8f8f8f">
     <container>
 
 
-        <audio id="audioPlayer" preload="auto">
-            <source src="assets/Eric Prydz - Opus (OUT NOW).mp4" type="audio/mp3" volu />
-            seu navegador não suporta HTML5
-        </audio>
+        
 
-        <div>
-            <canvas id="gameCanvas" width="400" height="300"></canvas>
-
-        </div>
+        <div class="secction">
+        <canvas id="gameCanvas"></canvas> 
         <div id="conteudo">
-            <div id="playerAndPlay">
-                <button id="play" onclick="main()">-JOGAR-</button>
-                <span id="audioIcone" class="material-symbols-outlined" style="cursor: pointer;"
-                    onclick="document.getElementById('audioPlayer').muted = !document.getElementById('audioPlayer').muted">
-                    volume_off
+            <div id="playerAndPlay" class="directionContainerClass">
+                <button class="btn btn-dark font-weight-normal" id="play" onclick="main()">Jogar</button>
+                <span id="audioIcone" style="cursor: pointer;"
+                    onclick="document.getElementById('audioPlayer').muted = !document.getElementById('audioPlayer').muted"><i class="fa-solid fa-volume-off"></i>
                 </span>
+                <audio id="audioPlayer" preload="auto">
+                    <source src="assets/Eric Prydz - Opus (OUT NOW).mp4" type="audio/mp3" volu />
+                    seu navegador não suporta HTML5
+                </audio>
 
 
-                
             </div>
-            <div id="directionContainer">
+            <div id="directionContainer" class="directionContainerClass">
 
                 <div id='espaco'></div>
 
-                <button class="direction" id="top" value="top" onclick="changeDirectionMobile(top)">Cima</button>
+                <button class="direction btn btn-dark btn-lg font-weight-normal" id="top" value="top" onclick="changeDirectionMobile(top)">Cima</button>
 
-                <div id='espaco'>Pontuação: <p id="score">0</p></div>
+                <div id='espaco' ><span id="scoreText">Pontuação:<p id="score">0</p></span>
+                </div>
 
-                <button id="left" class="direction" value="left" onclick="changeDirectionMobile(left)">Esquerda</button>
+                <button id="left" class="direction btn btn-dark btn-lg font-weight-normal" value="left" onclick="changeDirectionMobile(left)">Esquerda</button>
 
                 <div id='espaco'></div>
 
-                <button class="direction" id="right" value="right"
+                <button class="direction btn btn-dark btn-lg font-weight-normal" id="right" value="right"
                     onclick="changeDirectionMobile(right)">Direita</button>
-                    <div id='espaco'></div>
+                <div id='espaco'></div>
 
-                <button class="direction" id="bottom" value="bottom"
+                <button class="direction btn btn-dark btn-lg font-weight-normal" id="bottom" value="bottom"
                     onclick="changeDirectionMobile(bottom)">Baixo</button>
 
-                    <div id='espaco'></div>
+                <div id='espaco'></div>
 
             </div>
             <div>
 
             </div>
         </div>
+</div>
+
+       
+
     </container>
 
     <script src="js/script.js"></script>

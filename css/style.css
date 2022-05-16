@@ -1,71 +1,108 @@
-
 * {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
     margin: 0;
     padding: 0;
+    
+}
+body{
+    background: #634c4c;
+}
+#responsiveCanvas{
+    width: 100%;
+    margin: 0;
+    
+    
+}
+#gameCanvas{
+    position: relative;
+    left: 0;
+    top: 0;
+    border-radius: 2%;
+
+}
+.secction{
+    border: solid 10px #2E2E2E ;
+    background-color: #2E2E2E;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #000;
+}
+ 
+#scoreText{
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-shadow: 2px 2px 4px #000000;
 }
 
-
+.fa-volume-off{
+    color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px 4px #000000;
+}
 
 container{
     display: grid;
     justify-content: center;
+    width: 100%;
 }
+
+
+.btn {
+
+    box-shadow: 1px 1px 1px #000;
+  }
 
 #conteudo{
     display: grid;
     justify-content: center;
-    padding: 20px 0;
+    padding: auto auto;
 }
 #score{
-    font-weight: 700;
+    font-weight: 500;
     font-size: 20px;
     text-align: center;
-    
-    
+
 }
 
 #directionContainer{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 5px;
     padding: 10px;
+    object-fit: cover;
 }
 .direction{
     text-align: center;
-    width: 100%;
+    width: auto;
+    height: auto;
+    box-shadow: 2px 2px 5px #000;
 }
 #playerAndPlay{
     display: flex;
     justify-content: space-around;
     flex-direction: row-reverse;
+    column-gap: 150px;
 }
 
 #top,
-#bottom,#espaco
+#bottom
 {
-    font-size: 15px;
     text-align: center;
-    width: 100px;
-    height: 60px;
+    width: auto;
+    height: auto;
 }
-#left,
-#right{
-    width: 120px;
-    height: 60px;
+#left, #right ,#espaco{
+    width: auto;
+    height: 50px;
 }
 
 
 
 #play{
-    width: 100px;
+    width: auto;
 }
 
 
-
-#gameCanvas{
-    position: relative;
-}
 
 
