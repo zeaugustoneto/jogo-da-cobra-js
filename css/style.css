@@ -9,6 +9,8 @@ body{
     background: #634c4c;
 
 }
+
+
 .responsiveCanvas{
     width: 50%;
     margin: 0;
@@ -111,4 +113,10 @@ display: flex;
 #play{
     width: auto;
 
+}
+
+@media (max-width:500px ){
+    #directionContainer{
+         height: auto;
+    }
 }

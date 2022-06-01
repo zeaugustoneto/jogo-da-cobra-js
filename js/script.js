@@ -54,11 +54,11 @@ clearCanvas()
 drawSnake()
 
 function resizeCanvas (){
-    if(window.innerWidth <= 550){
+    if(window.innerWidth <= 500){
 
     return snakeBoard.width = window.innerWidth, snakeBoard.height = 300 ,genFood(),clearCanvas(),drawSnake(), conteudoResponsive.width = window.innerWidth
     } else {
-        return snakeBoard.width = 500, snakeBoard.height = 300 ,genFood(),clearCanvas(),drawSnake(), conteudoResponsive.width = window.innerWidth
+        return snakeBoard.width = 550, snakeBoard.height = 300 ,genFood(),clearCanvas(),drawSnake(), conteudoResponsive.width = window.innerWidth
     }
 }
 
