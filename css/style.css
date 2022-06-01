@@ -16,17 +16,12 @@ body{
 }
 #gameCanvas{
 display: flex;
-    border-radius: 10%;
     justify-content: center;
 
 
 }
 .secction{
-    border: solid 10px #2E2E2E ;
-    background-color: #2E2E2E;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px #000;
-
+    margin-top: 15px;
 }
  
 #scoreText{
