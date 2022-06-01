@@ -7,18 +7,18 @@
 }
 body{
     background: #634c4c;
+
 }
-#responsiveCanvas{
-    width: 100%;
+.responsiveCanvas{
+    width: 50%;
     margin: 0;
-    
-    
+
 }
 #gameCanvas{
-    position: relative;
-    left: 0;
-    top: 0;
-    border-radius: 2%;
+display: flex;
+    border-radius: 10%;
+    justify-content: center;
+
 
 }
 .secction{
@@ -26,6 +26,7 @@ body{
     background-color: #2E2E2E;
     border-radius: 10px;
     box-shadow: 2px 2px 5px #000;
+
 }
  
 #scoreText{
@@ -33,31 +34,41 @@ body{
     text-align: center;
     padding: 20px;
     text-shadow: 2px 2px 4px #000000;
+
 }
 
 .fa-volume-off{
     color: white;
     font-size: 30px;
     text-shadow: 2px 2px 4px #000000;
+
 }
 
-container{
+.cont{
+
     display: grid;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
+
+
+
 }
 
 
 .btn {
-
     box-shadow: 1px 1px 1px #000;
+
   }
 
 #conteudo{
     display: grid;
     justify-content: center;
     padding: auto auto;
+    margin: 30px;
+
 }
+
 #score{
     font-weight: 500;
     font-size: 20px;
@@ -71,18 +82,21 @@ container{
     gap: 5px;
     padding: 10px;
     object-fit: cover;
+
 }
 .direction{
     text-align: center;
     width: auto;
     height: auto;
     box-shadow: 2px 2px 5px #000;
+
 }
 #playerAndPlay{
     display: flex;
     justify-content: space-around;
     flex-direction: row-reverse;
     column-gap: 150px;
+
 }
 
 #top,
@@ -92,17 +106,14 @@ container{
     width: auto;
     height: auto;
 }
+
 #left, #right ,#espaco{
     width: auto;
     height: 50px;
+
 }
-
-
 
 #play{
     width: auto;
+
 }
-
-
-
-
