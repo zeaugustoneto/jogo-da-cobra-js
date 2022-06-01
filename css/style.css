@@ -116,7 +116,9 @@ display: flex;
 }
 
 @media (max-width:500px ){
-    #directionContainer{
-         height: auto;
+ 
+    #top, #bottom,#left,#right,#espaco{
+        width: 120px;
+        height: 100px;
     }
 }

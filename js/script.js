@@ -1,4 +1,4 @@
-let speed = 265
+let speed = 245
 let difficult, text
 const board_border = 'black';
 const board_background = 'lightgrey';
@@ -44,7 +44,7 @@ const conteudoResponsive = document.getElementsByClassName(".directionContainerC
 const snakeBoard_ctx = gameCanvas.getContext("2d");
 document.addEventListener("keydown", changeDirection)
 var audio = document.getElementById("audioPlayer");
-audio.volume = 0.2;
+audio.volume = 0.3;
 
 resizeCanvas()
 window.addEventListener('resize', resizeCanvas,false)
